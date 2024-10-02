@@ -7,7 +7,7 @@ export default function SearchSection() {
                 <div className='bg-[#121212] h-40 md:h-20 w-full md:flex md:justify-center md:items-center'>
 
                     <div className=' w-full h-1/2 flex justify-center items-center'>
-                        <input className='w-80 md:w-[90%] h-10 rounded pl-5 bg-[#252525]' type="text" placeholder='Titre...' />
+                        <input className='w-80 md:w-[90%] h-10 rounded pl-5 text-white bg-[#252525]' type="text" placeholder='Titre...' />
                     </div>
                     <div className=' w-full  h-1/2 flex justify-evenly items-center'>
 
@@ -19,7 +19,7 @@ export default function SearchSection() {
                         </select>
 
                         <input type="date" name="" id="" className='w-20 md:w-48 h-10 rounded text-gray-400  px-2 bg-[#252525]'/>
-                        <button type='submit' className=" text-white w-20 md:w-48 h-10  bg-[#FF1B1F] font-bold  py-1 rounded hover:bg-[#ff4f51]">connect</button>
+                        <button type='submit' className=" text-white w-20 md:w-48 h-10  bg-[#FF1B1F] font-bold  py-1 rounded  hover:shadow-md hover:shadow-gray-700">connect</button>
                     </div>
                 </div>
             </form>
