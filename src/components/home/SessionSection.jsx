@@ -16,7 +16,7 @@ export default function SessionSection() {
     ];
     return (
         <>
-            <div className="w-full bg-[#121212] h-[500px]">
+            <div className="w-full bg-[#121212] h-[400px]">
                 <p className="relative text-white text-xl font-semibold pl-9">
                     All movies
                     <span className="absolute bottom-0 left-9 w-16 border-b-2 border-red-700"></span>
