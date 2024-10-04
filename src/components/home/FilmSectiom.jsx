@@ -12,7 +12,7 @@ export default function FilmSection() {
         { id: 6, title: 'Iron Man', subtitle: 'The Beginning', description: 'lorem lorem | lorem' },
         { id: 7, title: 'Iron Man', subtitle: 'The Beginning', description: 'lorem lorem | lorem' },
         { id: 8, title: 'Iron Man', subtitle: 'The Beginning', description: 'lorem lorem | lorem' },
-        // Ajoutez d'autres films ici
+        
     ];
 
     return (
