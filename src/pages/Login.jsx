@@ -32,9 +32,9 @@ export default function Login() {
 
                                 <button type="submit" class="w-full py-2 bg-[#ff0707]  text-white font-bold rounded-md hover:bg-white hover:text-[#ff0707]  transition">Submit</button>
                             </form>
-                            <a href="" className='text-sm text-white hover:text-blue-500 w-full flex justify-end py-1'>
+                            <Link to="/forget-password" className='text-sm text-white hover:text-blue-500 w-full flex justify-end py-1'>
                                 forget password?
-                            </a>
+                            </Link>
                         </div>
                     </div>
                     <div className='w-full md:w-1/2 h-[80%] md:h-full bg-[#ff0707] '>

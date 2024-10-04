@@ -7,6 +7,8 @@ import PageNotFound from './pages/PageNotFound';
 import AllSessionFilm from './pages/AllSessionFilm';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ForgetPassword from './pages/ForgetPassword';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
             <Route path='/all-session-film'  element={<AllSessionFilm />}></Route>
             <Route path='/register'  element={<Register />}></Route>
             <Route path='/login'  element={<Login />}></Route>
+            <Route path='/forget-password'  element={<ForgetPassword />}></Route>
+            <Route path='/reset-password'  element={<ResetPassword />}></Route>
             <Route path='*' element={<PageNotFound />}></Route>
           </Route>
         </Routes>
