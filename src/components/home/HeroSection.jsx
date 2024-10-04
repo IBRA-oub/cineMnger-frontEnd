@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import heroImg from '../../assets/images/img2.jpg';
 import logoImg from '../../assets/images/logo.png';
+import { Link } from 'react-router-dom';
 
 export default function HeroSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +15,9 @@ export default function HeroSection() {
       <div className="h-96 md:h-[600px] w-full bg-cover bg-center  relative" style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="h-10 w-full bg-black bg-opacity-50 flex justify-between items-center">
           <div className="h-9 w-9 bg-cover bg-center" style={{ backgroundImage: `url(${logoImg})` }}></div>
-          <a className='hidden md:block mr-7' href=''>
+          <Link to='/login' className='hidden md:block mr-7' >
             <button className=" text-white px-11 bg-[#FF1B1F] font-bold w-full py-1 rounded hover:bg-[#ff4f51]">connect</button>
-          </a>
+          </Link>
           <button className="h-9 w-9 flex md:hidden" onClick={toggleMenu}>
             <svg xmlns="http://www.w3.org/2000/svg" height="24" width="21" viewBox="0 0 448 512">
               <path fill="#ffffff" d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
