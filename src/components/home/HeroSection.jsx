@@ -58,9 +58,9 @@ export default function HeroSection() {
         </div>
         <div className="p-4">
 
-          <a href=''>
+          <Link to='/login'>
             <button className="mt-4 bg-[#FF1B1F] font-bold w-full py-2 rounded hover:bg-[#ff4f51]">connect</button>
-          </a>
+          </Link>
         </div>
       </div>
 

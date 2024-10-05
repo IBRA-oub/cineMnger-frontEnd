@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import ForgetPassword from './pages/ForgetPassword';
 import ResetPassword from './pages/ResetPassword';
+import ClientReservation from './pages/ClientReservation';
+import ClientTickets from './pages/ClientTickets';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
             <Route path='/login'  element={<Login />}></Route>
             <Route path='/forget-password'  element={<ForgetPassword />}></Route>
             <Route path='/reset-password'  element={<ResetPassword />}></Route>
+            <Route path='/client-reservation'  element={<ClientReservation />}></Route>
+            <Route path='/client-tickets'  element={<ClientTickets />}></Route>
             <Route path='*' element={<PageNotFound />}></Route>
           </Route>
         </Routes>
