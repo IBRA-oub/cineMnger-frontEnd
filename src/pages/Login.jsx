@@ -1,9 +1,48 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import seatBg from '../assets/images/seatBg.jpg';
 import logo from '../assets/images/logo.png';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import { useLoginValidation } from '../../hooks/validation/userLoginValidation';
+import { loginUserApi } from '../../services/authApi/LoginUserApi';
+
 
 export default function Login() {
+
+    const { validateForm, resetForm, getError, hasError, isFormValided } = useLoginValidation();
+    const emailField = useRef();
+    const passwordField = useRef();
+
+    const navigate = useNavigate();
+
+
+    const handleSubmit = async(e) => {
+      
+        e.preventDefault()
+
+        const fields = {
+            email: emailField.current.value,
+            password: passwordField.current.value
+
+        }
+
+        if (validateForm(fields)) {
+            try{
+                await loginUserApi(fields);
+                navigate('/client-reservation')
+                
+
+            }catch(error){
+               console.log(error)
+            }
+
+
+
+
+
+            resetForm({ emailField, passwordField });
+        }
+    }
+
     return (
         <>
             <div className=' w-full h-[150vh] md:h-[100vh] roun bg-cover bg-center flex justify-center md:items-center  ' style={{ backgroundImage: `url(${seatBg})` }} >
@@ -14,23 +53,25 @@ export default function Login() {
                         </div>
                     </Link>
                     <div className='w-full md:w-1/2 h-full bg-[#ffffff26]  flex items-center justify-center'>
-                        <div class=" bg-opacity-50 p-8 rounded-lg w-full max-w-md">
-                            <h2 class="text-4xl font-bold text-center text-white mb-6 [text-shadow:_0_4px_8px_#000000]">Sign In</h2>
+                        <div className=" bg-opacity-50 p-8 rounded-lg w-full max-w-md">
+                            <h2 className="text-4xl font-bold text-center text-white mb-6 [text-shadow:_0_4px_8px_#000000]">Sign In</h2>
 
-                            <form action="#">
+                            <form onSubmit={handleSubmit}>
 
 
-                                <div class="mb-4">
-                                    <label for="email" class="block text-white mb-2">Email</label>
-                                    <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                                <div className="mb-4">
+                                    <label htmlFor="email" className="block text-white mb-2">Email</label>
+                                    <input ref={emailField} type="email" id="email" name="email" className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                                    {hasError("email") && <div className="text-red-400  font-bold">{getError("email")}</div>}
                                 </div>
 
-                                <div class="mb-6">
-                                    <label for="password" class="block text-white mb-2">Password</label>
-                                    <input type="password" id="password" name="password" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                                <div className="mb-6">
+                                    <label htmlFor="password" className="block text-white mb-2">Password</label>
+                                    <input ref={passwordField} type="password" id="password" name="password" className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500" />
+                                    {hasError("password") && <div className="text-red-400 font-bold">{getError("password")}</div>}
                                 </div>
 
-                                <button type="submit" class="w-full py-2 bg-[#ff0707]  text-white font-bold rounded-md hover:bg-white hover:text-[#ff0707]  transition">Submit</button>
+                                <button type="submit" className="w-full py-2 bg-[#ff0707]  text-white font-bold rounded-md hover:bg-white hover:text-[#ff0707]  transition">Submit</button>
                             </form>
                             <Link to="/forget-password" className='text-sm text-white hover:text-blue-500 w-full flex justify-end py-1'>
                                 forget password?
