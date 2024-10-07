@@ -1,10 +1,51 @@
-import React, { useState } from 'react';
-import heroImg from '../../assets/images/img2.jpg';
+import React, { useEffect, useState } from 'react';
 import logoImg from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
+import { getAllFilms } from '../../../services/filmApi/getAllFilmApi';
+
 
 export default function HeroSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentFilmIndex, setCurrentFilmIndex] = useState(0);
+  const [films, setFilms] = useState([]);
+
+  useEffect(() => {
+    const AllFilms = async () => {
+
+      const filmsData = await getAllFilms();
+      setFilms(filmsData)
+
+    }
+
+    AllFilms();
+  }, [])
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // console.log('hey')
+
+      setCurrentFilmIndex((prevIndex) => {
+
+        if (prevIndex === films.length - 1) {
+          return 0;
+        } else {
+          return prevIndex + 1
+
+        }
+      });
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [films])
+
+  if (films.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  // Film actuel
+  const currentFilm = films[currentFilmIndex];
+  // console.log(currentFilm)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -12,8 +53,8 @@ export default function HeroSection() {
 
   return (
     <>
-      <div className="h-96 md:h-[600px] w-full bg-cover bg-center  relative" style={{ backgroundImage: `url(${heroImg})` }}>
-        <div className="h-10 w-full bg-black bg-opacity-50 flex justify-between items-center">
+      <div className="h-96 md:h-[600px] w-full bg-cover bg-center  relative " style={{ backgroundImage: `url(${currentFilm.image})` }}>
+        <div className="h-10 w-full bg-black bg-opacity-90 flex justify-between items-center">
           <div className="h-9 w-9 bg-cover bg-center" style={{ backgroundImage: `url(${logoImg})` }}></div>
           <Link to='/login' className='hidden md:block mr-7' >
             <button className=" text-white px-11 bg-[#FF1B1F] font-bold w-full py-1 rounded hover:bg-[#ff4f51]">connect</button>
@@ -24,19 +65,19 @@ export default function HeroSection() {
             </svg>
           </button>
         </div>
-
-        <div className='h-72 md:h-96 w-72 md:w-96  absolute bottom-5 md:bottom-16 md:left-52 left-10'>
-          <div className='w-full h-32 md:h-52 md:pb-9'>
-            <h1 className='text-white font-bold text-5xl md:text-8xl [text-shadow:_0_4px_8px_#000000] leading-17'>Avangers  Endgame</h1>
+        <div className='w-full h-[90%] md:h-[93.3%] bg-[#000000aa]'></div>
+        <div className=' h-72 md:h-96 w-72 md:w-[50%]   absolute bottom-5 md:bottom-16 md:left-52 left-10'>
+          <div className='w-[100%]  h-32 md:h-52 md:pb-9'>
+            <h1 className='text-white  font-bold text-4xl md:text-8xl [text-shadow:_0_4px_8px_#000000] leading-17'>{currentFilm.titre}</h1>
           </div>
           <div className=' h-24 w-full md:pb-9'>
-            <p className='text-white font-bold text-xl [text-shadow:_0_4px_8px_#000000]'>ٌRating  80%  | +18</p>
-            <p className='text-white  pt-3 [text-shadow:_0_4px_8px_#000000]'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem, ipsum dolor.</p>
+            <p className='text-white font-bold text-xl [text-shadow:_0_4px_8px_#000000]'>Genre {currentFilm.genre}  | duree {currentFilm.duree} min</p>
+            <p className='text-white  w-[70%]  pt-3  [text-shadow:_0_4px_8px_#000000]'> {currentFilm.description}</p>
           </div>
-          <div>
-            
-            <a className='md:mt-28' href="">
-              <button className="text-[#FF1B1F] font-bold mt-4 bg-[#ffffff] w-[60%] py-2 rounded hover:space-x-3   flex justify-center items-center space-x-1">
+          <div className='md:mt-16'>
+
+            <a  href="">
+              <button className="text-[#FF1B1F] font-bold mt-4 bg-[#ffffff] w-[30%] py-2 rounded hover:space-x-3   flex justify-center items-center space-x-1">
                 <span>To book</span>
                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512">
                   <path fill="#ff1b1f" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
