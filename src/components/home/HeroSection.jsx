@@ -53,7 +53,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <div className="h-96 md:h-[600px] w-full bg-cover bg-center  relative " style={{ backgroundImage: `url(${currentFilm.image})` }}>
+      <div className="h-[600px] md:h-[600px] w-full bg-cover bg-center  relative " style={{ backgroundImage: `url(${currentFilm.image})` }}>
         <div className="h-10 w-full bg-black bg-opacity-90 flex justify-between items-center">
           <div className="h-9 w-9 bg-cover bg-center" style={{ backgroundImage: `url(${logoImg})` }}></div>
           <Link to='/login' className='hidden md:block mr-7' >
@@ -66,15 +66,15 @@ export default function HeroSection() {
           </button>
         </div>
         <div className='w-full h-[90%] md:h-[93.3%] bg-[#000000aa]'></div>
-        <div className=' h-72 md:h-96 w-72 md:w-[50%]   absolute bottom-5 md:bottom-16 md:left-52 left-10'>
+        <div className=' h-72 md:h-96 w-72 md:w-[50%]   absolute bottom-52 md:bottom-16 md:left-52 left-10'>
           <div className='w-[100%]  h-32 md:h-52 md:pb-9'>
             <h1 className='text-white  font-bold text-4xl md:text-8xl [text-shadow:_0_4px_8px_#000000] leading-17'>{currentFilm.titre}</h1>
           </div>
-          <div className=' h-24 w-full md:pb-9'>
+          <div className='h-48 md:h-24 w-full md:pb-9'>
             <p className='text-white font-bold text-xl [text-shadow:_0_4px_8px_#000000]'>Genre {currentFilm.genre}  | duree {currentFilm.duree} min</p>
-            <p className='text-white  w-[70%]  pt-3  [text-shadow:_0_4px_8px_#000000]'> {currentFilm.description}</p>
+            <p className='text-white  w-[100%] md:w-[70%] pt-3  [text-shadow:_0_4px_8px_#000000]'> {currentFilm.description}</p>
           </div>
-          <div className='md:mt-16'>
+          <div className='mt-24 md:mt-16'>
 
             <a  href="">
               <button className="text-[#FF1B1F] font-bold mt-4 bg-[#ffffff] w-[30%] py-2 rounded hover:space-x-3   flex justify-center items-center space-x-1">

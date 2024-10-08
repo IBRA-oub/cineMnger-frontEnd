@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import movieImg from '../../assets/images/img2.jpg';
+import { getAllSession } from '../../../services/sessionApi/getAllSessionApi';
 
 export default function SessionSection() {
 
-    const sessions = [
-        { id: 1, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300' },
-        { id: 2, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 3, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 4, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 5, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 6, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 7, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        { id: 8, title: 'Avangers infinty-war', location: 'Casablanca complexe culturel', date: '03 j 00h 22m 14s' , price: '300'},
-        // Ajoutez d'autres films ici
-    ];
+    const [sessions, setSessions] = useState([]);
+
+    useEffect(() => {
+        const fetchSession = async () => {
+            try {
+                const sessionData = await getAllSession();
+                console.log(sessionData)
+                setSessions(sessionData); 
+            } catch (error) {
+                console.error('Failed to fetch session:', error);
+            }
+        };
+
+        fetchSession(); 
+    }, []);
+
     return (
         <>
             <div className="w-full bg-[#121212] h-[400px]">
@@ -29,7 +35,7 @@ export default function SessionSection() {
                         <div className="flex flex-nowrap  space-x-4 p-8">
                             {/* ============= */}
                             {sessions.map((session) => (
-                            <div   key={session.id} className="relative  w-96 h-72  ">
+                            <div   key={session._id} className="relative  w-96 h-72  ">
                                 <div className='h-28 w-full  '>
 
                                 </div>
@@ -55,14 +61,14 @@ export default function SessionSection() {
                                         </a>
                                     </div>
                                     <div className='w-[60%] h-full  text-white '>
-                                        <p className='font-bold pt-6'>{session.title}</p>
+                                        <p className='font-bold pt-6'>{session.film.titre}</p>
                                         <p className='pt-6'>{session.location} </p>
-                                        <p>{session.date}</p>
-                                        <p className='pt-6'> <span className='font-bold'>from:</span> <span className='text-yellow-300'>{session.price} dh</span></p>
+                                        <p>{session.date_heure}</p>
+                                        <p className='pt-6'> <span className='font-bold'>from:</span> <span className='text-yellow-300'>{session.tarif} dh</span></p>
                                     </div>
                                 </div>
 
-                                <div className=" w-36 h-48 absolute top-8   bg-cover bg-center shadow-md shadow-gray-400 rounded-sm " style={{ backgroundImage: `url(${movieImg})` }}>
+                                <div className=" w-36 h-48 absolute top-8   bg-cover bg-center shadow-md shadow-gray-400 rounded-sm " style={{ backgroundImage: `url(${session.film.image})` }}>
                                     <div className="absolute -top-5 -left-2 bg-red-600 text-white font-bold px-4 rounded-md py-2 text-sm -rotate-90 translate-y-8">
                                         New
                                     </div>
