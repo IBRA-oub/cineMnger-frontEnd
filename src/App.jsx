@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<Home />}></Route>
-            <Route path='/all-session-film'  element={<AllSessionFilm />}></Route>
+            <Route path='/all-session-film/:id'  element={<AllSessionFilm />}></Route>
             <Route path='/register'  element={<Register />}></Route>
             <Route path='/login'  element={<Login />}></Route>
             <Route path='/forget-password'  element={<ForgetPassword />}></Route>

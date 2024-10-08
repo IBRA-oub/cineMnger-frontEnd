@@ -10,14 +10,14 @@ export default function SessionSection() {
         const fetchSession = async () => {
             try {
                 const sessionData = await getAllSession();
-                console.log(sessionData)
-                setSessions(sessionData); 
+                // console.log(sessionData)
+                setSessions(sessionData);
             } catch (error) {
                 console.error('Failed to fetch session:', error);
             }
         };
 
-        fetchSession(); 
+        fetchSession();
     }, []);
 
     return (
@@ -35,45 +35,45 @@ export default function SessionSection() {
                         <div className="flex flex-nowrap  space-x-4 p-8">
                             {/* ============= */}
                             {sessions.map((session) => (
-                            <div   key={session._id} className="relative  w-96 h-72  ">
-                                <div className='h-28 w-full  '>
+                                <div key={session._id} className="relative  w-96 h-72  ">
+                                    <div className='h-28 w-full  '>
 
-                                </div>
-                                <div className=' h-44 w-full bg-black rounded-md flex shadow-md shadow-gray-600'>
-                                    <div className='w-[40%] h-full  flex flex-col justify-end items-center'>
+                                    </div>
+                                    <div className=' h-44 w-full bg-black rounded-md flex shadow-md shadow-gray-600'>
+                                        <div className='w-[40%] h-full  flex flex-col justify-end items-center'>
 
-                                        <a href="">
-                                            <button className="text-[#FF1B1F] font-bold hover:shadow-md hover:shadow-gray-700  bg-[#ffffff] w-full mb-2 py-1 px-5 rounded hover:bg-[#FF1B1F] hover:text-white flex items-center justify-center">
-                                                <span>To book</span>
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    height="14"
-                                                    width="12.25"
-                                                    viewBox="0 0 448 512"
-                                                    className="ml-2"
-                                                >
-                                                    <path
-                                                        fill="currentColor"
-                                                        d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
-                                                    />
-                                                </svg>
-                                            </button>
-                                        </a>
+                                            <a href="">
+                                                <button className="text-[#FF1B1F] font-bold hover:shadow-md hover:shadow-gray-700  bg-[#ffffff] w-full mb-2 py-1 px-5 rounded hover:bg-[#FF1B1F] hover:text-white flex items-center justify-center">
+                                                    <span>To book</span>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        height="14"
+                                                        width="12.25"
+                                                        viewBox="0 0 448 512"
+                                                        className="ml-2"
+                                                    >
+                                                        <path
+                                                            fill="currentColor"
+                                                            d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                                                        />
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div className='w-[60%] h-full  text-white '>
+                                            <p className='font-bold pt-6'>{session.film.titre}</p>
+                                            <p className='pt-6'>{session.location} </p>
+                                            <p>{session.date_heure}</p>
+                                            <p className='pt-6'> <span className='font-bold'>from:</span> <span className='text-yellow-300'>{session.tarif} dh</span></p>
+                                        </div>
                                     </div>
-                                    <div className='w-[60%] h-full  text-white '>
-                                        <p className='font-bold pt-6'>{session.film.titre}</p>
-                                        <p className='pt-6'>{session.location} </p>
-                                        <p>{session.date_heure}</p>
-                                        <p className='pt-6'> <span className='font-bold'>from:</span> <span className='text-yellow-300'>{session.tarif} dh</span></p>
-                                    </div>
-                                </div>
 
-                                <div className=" w-36 h-48 absolute top-8   bg-cover bg-center shadow-md shadow-gray-400 rounded-sm " style={{ backgroundImage: `url(${session.film.image})` }}>
-                                    <div className="absolute -top-5 -left-2 bg-red-600 text-white font-bold px-4 rounded-md py-2 text-sm -rotate-90 translate-y-8">
-                                        New
+                                    <div className=" w-36 h-48 absolute top-8   bg-cover bg-center shadow-md shadow-gray-400 rounded-sm " style={{ backgroundImage: `url(${session.film.image})` }}>
+                                        <div className="absolute -top-5 -left-2 bg-red-600 text-white font-bold px-4 rounded-md py-2 text-sm -rotate-90 translate-y-8">
+                                            New
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             ))}
                             {/* ============== */}
                         </div>

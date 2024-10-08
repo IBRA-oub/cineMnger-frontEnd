@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import movieImg from '../../assets/images/img1.jpeg';
 import '../../style/home.css'
 import { getAllFilms } from '../../../services/filmApi/getAllFilmApi';
+import { Link } from 'react-router-dom';
 
 export default function FilmSection() {
     const [movies, setMovies] = useState([]);
@@ -11,17 +12,17 @@ export default function FilmSection() {
             try {
                 const filmData = await getAllFilms();
                 // console.log(filmData)
-                setMovies(filmData); 
+                setMovies(filmData);
             } catch (error) {
                 console.error('Failed to fetch movies:', error);
             }
         };
 
-        fetchMovies(); 
+        fetchMovies();
     }, []);
 
-  
-    
+
+
 
     return (
         <>
@@ -45,19 +46,19 @@ export default function FilmSection() {
                                     key={movie._id}
                                     className="relative w-64 h-96 shadow-md shadow-gray-600 hover:shadow-md hover:shadow-white bg-cover bg-center rounded-lg transition-all duration-300 ease-in-out transform  hover:w-72 hover:h-[400px]  "
                                     style={{ backgroundImage: `url(${movie.image})` }}
-                                   
+
                                 >
-                                   
+
                                     {/* Titre et desc */}
                                     <div className="absolute w-full bottom-8  ">
-                                        
+
                                         <h3 className="text-3xl font-bold flex text-center justify-center w-full [text-shadow:_0_4px_8px_#000000]  text-[#FFFD83]">{movie.titre}</h3>
                                         <p className="text-2xl font-bold flex justify-center w-full [text-shadow:_0_4px_8px_#000000]  text-[#FFFD83]">{movie.duree} min</p>
                                         <p className="text-base pl-5 text-white font-bold [text-shadow:_0_4px_8px_#000000]" >{movie.genre}</p>
                                     </div>
                                     {/* Bouton apparaissant au survol */}
                                     <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-50">
-                                        <a href="#">
+                                        <Link to={`/all-session-film/${movie._id}`}>
                                             <button className="text-[#FF1B1F] font-bold hover:shadow-md hover:shadow-white  bg-[#ffffff] w-full py-2 px-9 rounded hover:bg-[#FF1B1F] hover:text-white flex items-center justify-center">
                                                 <span>To book</span>
                                                 <svg
@@ -73,7 +74,7 @@ export default function FilmSection() {
                                                     />
                                                 </svg>
                                             </button>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             ))}
