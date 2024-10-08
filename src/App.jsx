@@ -12,6 +12,7 @@ import ResetPassword from './pages/ResetPassword';
 import ClientReservation from './pages/ClientReservation';
 import ClientTickets from './pages/ClientTickets';
 import Reservation from './pages/Reservation';
+import PrivateRoute from './routes/privateRoute';
 
 function App() {
   return (
@@ -25,9 +26,24 @@ function App() {
             <Route path='/login'  element={<Login />}></Route>
             <Route path='/forget-password'  element={<ForgetPassword />}></Route>
             <Route path='/reset-password'  element={<ResetPassword />}></Route>
-            <Route path='/client-reservation'  element={<ClientReservation />}></Route>
-            <Route path='/client-tickets'  element={<ClientTickets />}></Route>
-            <Route path='/reservation'  element={<Reservation />}></Route>
+            
+            <Route 
+              path='/client-reservation'  
+              element={
+                <PrivateRoute>
+                  <ClientReservation />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path='/client-tickets'  
+              element={
+                <PrivateRoute>
+                  <ClientReservation />
+                </PrivateRoute>
+              } 
+            />
+            <Route path='/reservation/:id'  element={<Reservation />}></Route>
             <Route path='*' element={<PageNotFound />}></Route>
           </Route>
         </Routes>

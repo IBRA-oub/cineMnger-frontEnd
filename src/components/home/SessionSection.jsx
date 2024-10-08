@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import movieImg from '../../assets/images/img2.jpg';
 import { getAllSession } from '../../../services/sessionApi/getAllSessionApi';
+import { Link } from 'react-router-dom';
 
 export default function SessionSection() {
 
@@ -42,7 +43,7 @@ export default function SessionSection() {
                                     <div className=' h-44 w-full bg-black rounded-md flex shadow-md shadow-gray-600'>
                                         <div className='w-[40%] h-full  flex flex-col justify-end items-center'>
 
-                                            <a href="">
+                                            <Link to={`/reservation/${session._id}`}>
                                                 <button className="text-[#FF1B1F] font-bold hover:shadow-md hover:shadow-gray-700  bg-[#ffffff] w-full mb-2 py-1 px-5 rounded hover:bg-[#FF1B1F] hover:text-white flex items-center justify-center">
                                                     <span>To book</span>
                                                     <svg
@@ -58,7 +59,7 @@ export default function SessionSection() {
                                                         />
                                                     </svg>
                                                 </button>
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className='w-[60%] h-full  text-white '>
                                             <p className='font-bold pt-6'>{session.film.titre}</p>

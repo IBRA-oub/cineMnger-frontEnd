@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getAllSessionByFilm } from '../../../services/sessionApi/getAllSessionByFilmApi';
 
 export default function AllSession({id}) {
@@ -35,7 +35,7 @@ export default function AllSession({id}) {
                     {sessions.map((session) => (
                         <div key={session._id} className="relative mx-auto w-full">
 
-                            <a  href="#" className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+                            <Link  to={`/reservation/${session._id}`} className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
                                 <div className="shadow p-4 rounded-lg bg-black text-white">
 
 
@@ -103,7 +103,7 @@ export default function AllSession({id}) {
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </div>
                     ))};
 
