@@ -39,7 +39,7 @@ function App() {
               path='/client-tickets'  
               element={
                 <PrivateRoute>
-                  <ClientReservation />
+                  <ClientTickets />
                 </PrivateRoute>
               } 
             />
